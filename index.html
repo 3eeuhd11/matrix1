@@ -1,34 +1,147 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TERMINAL SIMULATION</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAINFRAME_OVERRIDE_V4.9</title>
     <style>
-        body { background-color: black; color: #00FF00; font-family: monospace; margin: 0; overflow: hidden; }
-        #terminal { padding: 20px; white-space: pre-wrap; font-size: 16px; height: 90vh; overflow-y: auto; }
-        .btn-start { position: absolute; top: 20px; right: 20px; padding: 10px 20px; background: #00FF00; color: black; border: none; cursor: pointer; font-weight: bold; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #000; color: #0f0; font-family: 'Courier New', Courier, monospace; overflow: hidden; height: 100vh; }
+        canvas { position: absolute; top: 0; left: 0; z-index: 1; opacity: 0.25; }
+        .console { position: relative; z-index: 2; padding: 30px; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; background: rgba(0,0,0,0.65); }
+        .header { border-bottom: 2px solid #0f0; padding-bottom: 10px; text-shadow: 0 0 10px #0f0; font-weight: bold; }
+        #output { flex-grow: 1; margin-top: 20px; overflow-y: auto; white-space: pre-wrap; font-size: 15px; line-height: 1.4; text-shadow: 0 0 5px #0f0; }
+        .red-alert { color: #ff0033 !important; text-shadow: 0 0 10px #ff0033 !important; }
+        .red-border { border-color: #ff0033 !important; }
+        .overlay-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; padding: 20px 40px; background: #000; color: #0f0; border: 2px solid #0f0; font-family: monospace; font-size: 20px; font-weight: bold; cursor: pointer; box-shadow: 0 0 20px #0f0; text-transform: uppercase; }
+        .overlay-btn:hover { background: #0f0; color: #000; }
+        .glitch { animation: glitch 0.2s infinite; }
+        @keyframes glitch { 0% { transform: translate(0) } 20% { transform: translate(-3px, 3px) } 40% { transform: translate(-3px, -3px) } 60% { transform: translate(3px, 3px) } 80% { transform: translate(3px, -3px) } 100% { transform: translate(0) } }
     </style>
 </head>
 <body>
-    <button class="btn-start" onclick="startSimulation()">START DEMO</button>
-    <div id="terminal">CLICK "START DEMO" TO INITIALIZE VISUAL EFFECTS...</div>
+
+    <canvas id="matrix"></canvas>
+    
+    <button class="overlay-btn" id="startBtn" onclick="initOverride()">[ INITIALIZE SYSTEM OVERRIDE ]</button>
+
+    <div class="console">
+        <div class="header" id="headerText">
+            SYSTEM CONTROL SHELL v9.0.4 || ROOT ACCESS: PENDING...
+        </div>
+        <div id="output"></div>
+    </div>
+
     <script>
-        function startSimulation() {
-            const term = document.getElementById('terminal');
-            term.innerHTML = "INITIALIZING SYSTEM OVERRIDE PROTOCOL...\n";
-            let count = 0;
+        // Matrix Rain Background
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 33);
+
+        // Web Audio Synth Beep
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playBeep(freq = 800, type = 'square', duration = 0.08) {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + duration);
+        }
+
+        // Hack Sequence Script
+        const output = document.getElementById('output');
+        const startBtn = document.getElementById('startBtn');
+        const headerText = document.getElementById('headerText');
+
+        const logs = [
+            "[+] TARGET ACQUIRED: GATEWAY_ROUTER_10.0.4.1",
+            "[+] INJECTING EXPLOIT PAYLOAD: CVE-2026-9918...",
+            "[+] BYPASSING FIREWALL RULESET...",
+            "[SUCCESS] KERNEL MEMORY LEAKED (0x7FFF9A8B)",
+            "[+] EXFILTRATING SYSTEM CREDENTIALS...",
+            "[+] ESCALATING PRIVILEGES TO ROOT...",
+            "[SUCCESS] AUTHENTICATION BYPASS COMPLETE",
+            "--------------------------------------------------",
+            "DUMPING SAM DATABASE HASHES:",
+            "Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::",
+            "Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::",
+            "System_Backup:1002:e5265630130d7f37d3770d47c4692d24:a92801802da516147617b0754802c67b:::",
+            "--------------------------------------------------",
+            "[+] ENCRYPTING SYSTEM RESTORE LOGS...",
+            "[!] CRITICAL SYSTEM EXPLOIT IN PROGRESS..."
+        ];
+
+        function initOverride() {
+            startBtn.style.display = 'none';
+            if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+
+            let index = 0;
             const interval = setInterval(() => {
-                let randomHex = Math.random().toString(36).substring(2, 15);
-                term.innerHTML += `[DATA STREAM] 0x${randomHex.toUpperCase()} :: EXPLOIT_PAYLOAD_EXECUTING...\n`;
-                term.scrollTop = term.scrollHeight;
-                count++;
-                if (count > 50) {
+                if (index < logs.length) {
+                    output.innerHTML += logs[index] + "\n";
+                    output.scrollTop = output.scrollHeight;
+                    playBeep(600 + (index * 40), 'square', 0.05);
+                    index++;
+                } else {
                     clearInterval(interval);
-                    term.style.color = "red";
-                    term.innerHTML += "\n[!] WARNING: SYSTEM COMPROMISED - DEMO COMPLETE.";
-                    alert("DEMO ALERT: SYSTEM COMPROMISED!");
+                    triggerRedAlert();
                 }
-            }, 100);
+            }, 300);
+        }
+
+        function triggerRedAlert() {
+            let streamCount = 0;
+            const streamInterval = setInterval(() => {
+                let hex = Math.random().toString(16).substring(2, 10).toUpperCase();
+                output.innerHTML += `STREAM_PACKET_EXFIL :: 0x${hex} -> REMOTE_SERVER_IP: 185.220.${Math.floor(Math.random()*255)}.${Math.floor(Math.random()*255)}\n`;
+                output.scrollTop = output.scrollHeight;
+                playBeep(1200, 'sawtooth', 0.02);
+                streamCount++;
+
+                if (streamCount > 40) {
+                    clearInterval(streamInterval);
+                    document.body.classList.add('glitch');
+                    output.classList.add('red-alert');
+                    headerText.classList.add('red-alert', 'red-border');
+                    headerText.innerText = "CRITICAL WARNING: MAINFRAME TOTALLY COMPROMISED!";
+                    
+                    output.innerHTML += "\n==================================================\n";
+                    output.innerHTML += "  FATAL ERROR: KERNEL DATA ENCRYPTED BY HOST\n";
+                    output.innerHTML += "  SYSTEM LOCKOUT IN EFFECT - DO NOT CLOSE WINDOW\n";
+                    output.innerHTML += "==================================================\n";
+                    
+                    for(let i = 1; i <= 10; i++) {
+                        setTimeout(() => {
+                            playBeep(300, 'sawtooth', 0.3);
+                            alert(`CRITICAL SYSTEM ERROR (#${i}): SYSTEM INTEGRITY FAILURE DETECTED!`);
+                        }, i * 250);
+                    }
+                }
+            }, 50);
         }
     </script>
 </body>
