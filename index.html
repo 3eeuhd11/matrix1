@@ -3,79 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANONYMOUS_TYPOGRAPHY</title>
+    <title>HACKED</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background-color: #000;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
         }
-        canvas {
-            max-width: 95vw;
-            max-height: 95vh;
+        pre {
+            font-size: 8px;
+            line-height: 0.9;
+            letter-spacing: 0px;
+            font-weight: bold;
+            text-align: left;
         }
+        /* กำหนดระดับแสงเงาสำหรับตัวอักษร HACK */
+        .d0 { color: #050505; } /* มืดมิด */
+        .d1 { color: #1a1a1a; } /* พื้นหลังเงาจาง */
+        .d2 { color: #404040; } /* เงาลึก */
+        .d3 { color: #707070; } /* เงากลาง */
+        .d4 { color: #a0a0a0; } /* แสงอ่อน */
+        .d5 { color: #d0d0d0; } /* สว่าง */
+        .d6 { color: #ffffff; text-shadow: 0 0 3px #fff; } /* สว่างจัด */
+        
+        .status {
+            margin-top: 20px;
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: #808080;
+            animation: blink 1s infinite alternate;
+        }
+        @keyframes blink { from { opacity: 1; } to { opacity: 0.2; } }
     </style>
 </head>
 <body>
 
-    <canvas id="asciiCanvas"></canvas>
+<pre>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d4">HACKHACKHACKHACKHACKHACKHACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d3">HACKHACK</span><span class="d5">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d3">HACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d3">HACKHACK</span><span class="d6">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d4">HACKHACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d5">HACKHACKHACK</span><span class="d6">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d4">HACKHACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d5">HACKHACKHACKHACK</span><span class="d6">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d3">HACKHACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d5">HACKHACKHACKHACKHACK</span><span class="d6">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d3">HACKHACK</span><span class="d1">HACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d4">HACKHACKHACKHACKHACKHACK</span><span class="d6">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d4">HACKHACK</span><span class="d1">HACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACK</span><span class="d2">HACK</span><span class="d4">HACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACKHACKHACKHACK</span><span class="d6">HACKHACKHACK</span><span class="d2">HACKHACKHACKHACK</span><span class="d5">HACKHACKHACK</span><span class="d3">HACKHACK</span><span class="d1">HACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACK</span><span class="d2">HACK</span><span class="d4">HACKHACKHACKHACKHACKHACK</span><span class="d0">HACKHACKHACKHACKHACKHACK</span><span class="d5">HACK</span><span class="d0">HACKHACKHACKHACKHACKHACK</span><span class="d4">HACKHACK</span><span class="d2">HACK</span><span class="d1">HACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACK</span><span class="d2">HACK</span><span class="d4">HACKHACKHACKHACKHACK</span><span class="d0">HACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d0">HACKHACKHACKHACKHACKHACKHACK</span><span class="d3">HACKHACK</span><span class="d1">HACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACK</span><span class="d2">HACK</span><span class="d4">HACKHACKHACKHACKHACK</span><span class="d0">HACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d0">HACKHACKHACKHACKHACKHACKHACK</span><span class="d3">HACKHACK</span><span class="d1">HACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACKHACKHACKHACKHACKHACK</span><span class="d0">HACKHACKHACKHACKHACKHACK</span><span class="d5">HACK</span><span class="d0">HACKHACKHACKHACKHACKHACK</span><span class="d4">HACKHACK</span><span class="d2">HACK</span><span class="d1">HACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACKHACKHACKHACK</span><span class="d6">HACKHACKHACK</span><span class="d2">HACKHACKHACKHACK</span><span class="d5">HACKHACKHACK</span><span class="d3">HACKHACK</span><span class="d1">HACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACKHACKHACKHACKHACKHACK</span><span class="d6">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d4">HACKHACK</span><span class="d1">HACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACKHACKHACKHACKHACK</span><span class="d0">HACKHACKHACK</span><span class="d6">HACKHACKHACKHACKHACKHACK</span><span class="d0">HACKHACKHACK</span><span class="d4">HACKHACK</span><span class="d1">HACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACKHACKHACKHACK</span><span class="d0">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d4">HACKHACK</span><span class="d2">HACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACKHACKHACK</span><span class="d5">HACK</span><span class="d0">HACKHACKHACKHACKHACKHACKHACK</span><span class="d5">HACK</span><span class="d3">HACKHACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACKHACK</span><span class="d5">HACKHACK</span><span class="d0">HACKHACKHACKHACKHACK</span><span class="d5">HACKHACK</span><span class="d3">HACKHACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACK</span><span class="d5">HACKHACKHACK</span><span class="d0">HACKHACKHACK</span><span class="d5">HACKHACKHACK</span><span class="d3">HACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d4">HACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span><span class="d2">HACK</span><span class="d3">HACKHACKHACK</span><span class="d2">HACK</span><span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+<span class="d1">HACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACKHACK</span>
+</pre>
 
-    <script>
-        const canvas = document.getElementById('asciiCanvas');
-        const ctx = canvas.getContext('2d');
+<div class="status">[ SYSTEM COMPROMISED ]</div>
 
-        // รูป Anonymous สไตล์เดียวกับต้นฉบับสำหรับแปลงเป็น Typography
-        const img = new Image();
-        img.crossOrigin = "anonymous";
-        img.src = "https://i.imgur.com/2s36B3B.png";
-
-        img.onload = () => {
-            const width = 600;
-            const height = (img.height / img.width) * width;
-            canvas.width = width;
-            canvas.height = height;
-
-            // วาดรูปลง Memory Canvas เพื่ออ่านค่าความสว่าง
-            const memCanvas = document.createElement('canvas');
-            const memCtx = memCanvas.getContext('2d');
-            memCanvas.width = width;
-            memCanvas.height = height;
-            memCtx.drawImage(img, 0, 0, width, height);
-
-            const imgData = memCtx.getImageData(0, 0, width, height);
-            const pixels = imgData.data;
-
-            ctx.fillStyle = "#000";
-            ctx.fillRect(0, 0, width, height);
-
-            const text = "HACK";
-            let charIndex = 0;
-            const step = 6; // ขนาดความละเอียด (ยิ่งน้อยยิ่งละเอียดยิบ)
-
-            for (let y = 0; y < height; y += step) {
-                for (let x = 0; x < width; x += step) {
-                    const i = (y * width + x) * 4;
-                    const r = pixels[i];
-                    const g = pixels[i + 1];
-                    const b = pixels[i + 2];
-                    
-                    // คำนวณความสว่างของพิกเซลนั้นๆ
-                    const brightness = (r * 0.299 + g * 0.587 + b * 0.114);
-
-                    // ถ้าพิกเซลตรงนั้นมีความสว่าง ให้เปลี่ยนเป็นตัวอักษร HACK
-                    if (brightness > 15) {
-                        ctx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`;
-                        ctx.font = `bold ${step + 1}px monospace`;
-                        ctx.fillText(text[charIndex % text.length], x, y);
-                        charIndex++;
-                    }
-                }
-            }
-        };
-    </script>
 </body>
 </html>
