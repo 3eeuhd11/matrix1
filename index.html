@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>TERMINAL SIMULATION</title>
+    <style>
+        body { background-color: black; color: #00FF00; font-family: monospace; margin: 0; overflow: hidden; }
+        #terminal { padding: 20px; white-space: pre-wrap; font-size: 16px; height: 90vh; overflow-y: auto; }
+        .btn-start { position: absolute; top: 20px; right: 20px; padding: 10px 20px; background: #00FF00; color: black; border: none; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <button class="btn-start" onclick="startSimulation()">START DEMO</button>
+    <div id="terminal">CLICK "START DEMO" TO INITIALIZE VISUAL EFFECTS...</div>
+    <script>
+        function startSimulation() {
+            const term = document.getElementById('terminal');
+            term.innerHTML = "INITIALIZING SYSTEM OVERRIDE PROTOCOL...\n";
+            let count = 0;
+            const interval = setInterval(() => {
+                let randomHex = Math.random().toString(36).substring(2, 15);
+                term.innerHTML += `[DATA STREAM] 0x${randomHex.toUpperCase()} :: EXPLOIT_PAYLOAD_EXECUTING...\n`;
+                term.scrollTop = term.scrollHeight;
+                count++;
+                if (count > 50) {
+                    clearInterval(interval);
+                    term.style.color = "red";
+                    term.innerHTML += "\n[!] WARNING: SYSTEM COMPROMISED - DEMO COMPLETE.";
+                    alert("DEMO ALERT: SYSTEM COMPROMISED!");
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
