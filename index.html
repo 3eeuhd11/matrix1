@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANONYMOUS_HACK</title>
+    <title>ANONYMOUS</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -22,58 +22,91 @@
 </head>
 <body>
 
-    <canvas id="typographyCanvas"></canvas>
+    <canvas id="maskCanvas"></canvas>
 
     <script>
-        const canvas = document.getElementById('typographyCanvas');
+        const canvas = document.getElementById('maskCanvas');
         const ctx = canvas.getContext('2d');
 
-        // ตั้งค่าความละเอียด
-        canvas.width = 800;
-        canvas.height = 1000;
+        canvas.width = 700;
+        canvas.height = 900;
 
-        const img = new Image();
-        // ดึงรูปหน้ากาก Anonymous มาแปลงเป็น Text Typography
-        img.crossOrigin = "Anonymous";
-        img.src = 'https://i.imgur.com/2s36B3B.png'; // รูปหน้ากากแบบ High Contrast
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        img.onload = function() {
-            // วาดรูปลง Memory
-            const tempCanvas = document.createElement('canvas');
-            const tempCtx = tempCanvas.getContext('2d');
-            tempCanvas.width = canvas.width;
-            tempCanvas.height = canvas.height;
-            tempCtx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        // วาดรูปทรงหน้ากากเบื้องต้นใน Memory เพื่อคำนวณมิติแสงเงา
+        const memCanvas = document.createElement('canvas');
+        const memCtx = memCanvas.getContext('2d');
+        memCanvas.width = canvas.width;
+        memCanvas.height = canvas.height;
 
-            const imgData = tempCtx.getImageData(0, 0, canvas.width, canvas.height);
-            const data = imgData.data;
+        memCtx.fillStyle = '#000';
+        memCtx.fillRect(0, 0, memCanvas.width, memCanvas.height);
 
-            ctx.fillStyle = '#000';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        // โครงหน้ากากฝั่งขวา (ฝั่งซ้ายมืดตามรูปต้นฉบับ)
+        memCtx.fillStyle = '#FFF';
+        memCtx.beginPath();
+        memCtx.ellipse(430, 420, 160, 260, 0, 0, Math.PI * 2);
+        memCtx.fill();
 
-            const text = "HACK";
-            let textIndex = 0;
-            const step = 8; // ความถี่ตัวอักษร (ยิ่งน้อย ยิ่งละเอียด)
+        // แก้มและคางส่วนล่าง
+        memCtx.beginPath();
+        memCtx.moveTo(430, 600);
+        memCtx.lineTo(390, 780);
+        memCtx.lineTo(470, 750);
+        memCtx.closePath();
+        memCtx.fill();
 
-            for (let y = 0; y < canvas.height; y += step) {
-                for (let x = 0; x < canvas.width; x += step) {
-                    const index = (y * canvas.width + x) * 4;
-                    const r = data[index];
-                    const g = data[index + 1];
-                    const b = data[index + 2];
-                    
-                    // คำนวณความสว่าง (Brightness)
-                    const brightness = (r + g + b) / 3;
+        // เจาะเงามืด: คิ้ว เบ้าตา หนวด จมูก รอยยิ้ม และฝั่งซ้าย
+        memCtx.fillStyle = '#000';
+        // ฝั่งซ้ายบังมืด
+        memCtx.fillRect(0, 0, 360, 900);
+        // เบ้าตาขวา
+        memCtx.beginPath();
+        memCtx.ellipse(440, 370, 40, 20, -0.2, 0, Math.PI * 2);
+        memCtx.fill();
+        // โหนกคิ้วหนา
+        memCtx.beginPath();
+        memCtx.ellipse(440, 335, 55, 12, -0.2, 0, Math.PI * 2);
+        memCtx.fill();
+        // หนวดและรอยยิ้ม
+        memCtx.beginPath();
+        memCtx.ellipse(435, 510, 60, 15, 0.1, 0, Math.PI * 2);
+        memCtx.fill();
+        memCtx.beginPath();
+        memCtx.ellipse(440, 560, 70, 25, 0.1, 0, Math.PI * 2);
+        memCtx.fill();
+        // เคราคาง
+        memCtx.beginPath();
+        memCtx.ellipse(405, 710, 15, 45, -0.2, 0, Math.PI * 2);
+        memCtx.fill();
 
-                    if (brightness > 20) { // แสดงเฉพาะส่วนที่มีแสงเงา
-                        ctx.fillStyle = `rgb(${brightness}, ${brightness}, ${brightness})`; // ปรับเป็นโทนขาว-เทาตามรูป หรือเปลี่ยนเป็น `rgb(0, ${brightness}, 0)` เพื่อให้เป็นสีเขียว
-                        ctx.font = `${step + 2}px monospace`;
-                        ctx.fillText(text[textIndex % text.length], x, y);
-                        textIndex++;
-                    }
+        // อ่านค่า Pixel เพื่อเขียนตัวอักษร HACK เรียงตามเงา
+        const imgData = memCtx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imgData.data;
+
+        const word = "HACK";
+        let charIdx = 0;
+        const step = 7; // ระยะห่างตัวอักษร ยิ่งเล็กลายยิ่งละเอียด
+
+        for (let y = 100; y < canvas.height - 100; y += step) {
+            for (let x = 200; x < canvas.width - 100; x += step) {
+                const i = (y * canvas.width + x) * 4;
+                const isWhite = data[i] > 128;
+
+                if (isWhite) {
+                    // คำนวณความสว่างตามระยะขอบเพื่อสร้างมิติ Gradation 3D
+                    let distFromCenter = Math.abs(x - 430) / 160;
+                    let alpha = 1 - Math.pow(distFromCenter, 2);
+                    if (alpha < 0.2) alpha = 0.2;
+
+                    ctx.fillStyle = `rgba(220, 220, 220, ${alpha})`;
+                    ctx.font = `bold ${step + 2}px monospace`;
+                    ctx.fillText(word[charIdx % word.length], x, y);
+                    charIdx++;
                 }
             }
-        };
+        }
     </script>
 </body>
 </html>
