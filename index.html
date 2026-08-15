@@ -18,29 +18,34 @@
             overflow: hidden;
         }
         pre {
-            font-size: 8px;
-            line-height: 0.9;
-            letter-spacing: 0px;
+            /* ขยายขนาดตัวอักษรและปรับระยะบรรทัดให้ใหญ่เต็มตา */
+            font-size: 16px; 
+            line-height: 1.0;
+            letter-spacing: 1px;
             font-weight: bold;
-            text-align: left;
+            text-align: center;
+            transform: scale(1.2); /* ขยายสเกลภาพเพิ่มขึ้นอีก 20% */
         }
-        /* กำหนดระดับแสงเงาสำหรับตัวอักษร HACK */
-        .d0 { color: #050505; } /* มืดมิด */
-        .d1 { color: #1a1a1a; } /* พื้นหลังเงาจาง */
-        .d2 { color: #404040; } /* เงาลึก */
-        .d3 { color: #707070; } /* เงากลาง */
-        .d4 { color: #a0a0a0; } /* แสงอ่อน */
-        .d5 { color: #d0d0d0; } /* สว่าง */
-        .d6 { color: #ffffff; text-shadow: 0 0 3px #fff; } /* สว่างจัด */
+        
+        /* เพิ่มเอฟเฟกต์แสงเงาให้ระดับตัวอักษรดูนูนและชัดขึ้น */
+        .d0 { color: #0a0a0a; } 
+        .d1 { color: #222222; } 
+        .d2 { color: #555555; } 
+        .d3 { color: #888888; text-shadow: 0 0 2px #888; } 
+        .d4 { color: #bbb3bb; text-shadow: 0 0 4px #bbb; } 
+        .d5 { color: #eeeeee; text-shadow: 0 0 6px #fff; } 
+        .d6 { color: #ffffff; text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff; } 
         
         .status {
-            margin-top: 20px;
-            font-size: 14px;
-            letter-spacing: 3px;
-            color: #808080;
-            animation: blink 1s infinite alternate;
+            margin-top: 40px;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            color: #ffffff;
+            text-shadow: 0 0 10px #ffffff;
+            animation: blink 0.8s infinite alternate;
         }
-        @keyframes blink { from { opacity: 1; } to { opacity: 0.2; } }
+        @keyframes blink { from { opacity: 1; } to { opacity: 0.1; } }
     </style>
 </head>
 <body>
